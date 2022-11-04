@@ -6,13 +6,14 @@ services:
 startup: {type: form, module: Base}
 package_name: M3_App_1
 allow_embedding: false
-name: Clone of M3 App 1
+name: Automatic Thought Record
 runtime_options:
   version: 2
   client_version: '3'
   server_version: python3-full
   server_spec: {base: python310-minimal}
   server_spec_disabled: {requirements: '', base: python310-standard}
+metadata: {title: Automatic Thought Record, logo_img: 'asset:ezgif.com-gif-maker.gif'}
 startup_form: null
 db_schema: {}
 renamed: true
