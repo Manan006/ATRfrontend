@@ -30,6 +30,7 @@ components:
       icon: 'fa:folder-open'}
     name: list_thoughts
     layout_properties: {grid_position: 'ZDLPQT,LVNIDR'}
+    event_bindings: {click: list_thoughts_click}
   - type: Link
     properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: Submit a Thought, font_size: null, wrap_on: mobile, font: '',
@@ -38,10 +39,10 @@ components:
       icon: 'fa:comment'}
     name: submit_thought
     layout_properties: {grid_position: 'YKFKIT,ACHWRO'}
-    event_bindings: {click: locations_click}
+    event_bindings: {click: submit_thought_click}
   - type: Link
     properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: Change Password, font_size: null, wrap_on: mobile, font: '',
+      visible: false, text: Change Password, font_size: null, wrap_on: mobile, font: '',
       col_spacing: medium, spacing_above: small, icon_align: left, col_widths: '{}',
       spacing_below: small, italic: false, background: '', bold: false, underline: false,
       icon: 'fa:user-secret'}

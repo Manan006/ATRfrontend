@@ -23,8 +23,8 @@ class Change_Password(Change_PasswordTemplate):
         self.added_warning=True
     else:
       self.content_panel.clear()
-      self.add_component(Home())
-
+      open_form('Base')
+  
   def username_input_pressed_enter(self, **event_args):
     """This method is called when the user presses Enter in this text box"""
     pass

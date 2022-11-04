@@ -24,10 +24,9 @@ class Login(LoginTemplate):
         self.added_warning=True
     else:
       self.added_warning=False
-      self.parent.parent.login.text="Sign Out"
-      # self.parent.parent.change_password.visible=True
+      self.parent.parent.change_password.visible=True
       self.content_panel.clear()
-      self.add_component(Home())
+      open_form('Base')
 
   def signup_link_click(self, **event_args):
     self.content_panel.clear()

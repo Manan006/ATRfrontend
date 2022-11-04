@@ -7,8 +7,8 @@ from anvil.tables import app_tables
 from ..Home import Home
 from ..Login import Login
 from ..Change_Password import Change_Password
-from ..Locations import Locations
-from ..location import location
+from ..Submit_Thought import Submit_Thought
+from ..thoughts import thoughts
 import json
 app_url = "http://139.84.135.123:8000"
 class Base(BaseTemplate):
@@ -30,21 +30,28 @@ class Base(BaseTemplate):
     self.content_panel.clear()
     self.content_panel.add_component(Login())
 
-  def locations_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    self.content_panel.clear()
-    locations=anvil.server.call('get_location')
-    for item in locations[1]:
-      print(item)
-      item_=json.loads(item[0].replace("'",'"'))
-      print(item_)
-      print(str(item[1]))
-      self.add_component(location(lat=item_['lat'],lon=item_['lon'],time_=str(item[1])))
     
   def change_password_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
     self.add_component(Change_Password())
+
+  def list_thoughts_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.content_panel.clear()
+    thought_=anvil.server.call('get_thoughts')
+    for item in thought_[1]:
+      print(item)
+      self.add_component(thoughts(*item))
+
+
+  def submit_thought_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.content_panel.clear()
+    self.add_component(Submit_Thought())
+
+
+
 
 
 

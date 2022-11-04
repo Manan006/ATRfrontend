@@ -4,6 +4,7 @@ from anvil.tables import app_tables
 import anvil.server
 from anvil import http
 import json
+import urllib.parse
 # This is a server module. It runs on the Anvil server,
 # rather than in the user's browser.
 #
@@ -16,7 +17,7 @@ import json
 #   print("Hello, " + name + "!")
 #   return 42
 #
-app_url = "https://api.lml.dotcodes.dev"
+app_url = "https://atr.dotcodes.dev"
 
 @anvil.server.callable
 def login(username,password):
@@ -75,8 +76,8 @@ def change_password(old,new):
     return True
 
 @anvil.server.callable
-def get_location():
-  url = app_url+f"/get_location?sessionid={anvil.server.cookies.local['sessionid']}"
+def get_thoughts():
+  url = app_url+f"/list_thoughts?sessionid={anvil.server.cookies.local['sessionid']}"
   print(url)
   try:
     response = http.request(method="GET",url=url)
@@ -84,4 +85,18 @@ def get_location():
     print(response.status)
     return (False,())
   else:
-    return (True,json.loads(response.get_bytes().decode())["location"])
+    return (True,json.loads(response.get_bytes().decode())["thoughts"])
+
+@anvil.server.callable
+def push_thought(thought):
+  print(type(thought))
+  url = app_url+f"/push_thought?sessionid={anvil.server.cookies.local['sessionid']}&thought={urllib.parse.quote(thought)}"
+  print(url)
+  try:
+    response = http.request(method="PUT",url=url)
+  except http.HttpErrorStatus as response:
+    print(response.status)
+    return (False)
+  else:
+    return (True)
+
