@@ -22,6 +22,6 @@ class Signup(SignupTemplate):
         self.added_warning=True
     else:
       self.content_panel.clear()
-      from ..Login import Login
-      self.content_panel.add_component(Login())
+      open_form('Base')
+
 
